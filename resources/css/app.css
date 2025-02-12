@@ -1,0 +1,19 @@
+#inbox-div {
+
+    width: fit-content;
+    padding-left: 100px;
+    background-color: black;
+
+}
+
+#title {
+    color: aquamarine;
+}
+
+#navbar {
+    position: fixed;
+}
+
+#sidevbar {
+    position: fixed;
+}
