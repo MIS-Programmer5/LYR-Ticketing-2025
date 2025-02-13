@@ -1,0 +1,112 @@
+﻿@page
+@model IndexModel
+
+@{
+    ViewData["Title"] = "Home page";
+    @using Microsoft.AspNetCore.Session;
+    @using Microsoft.AspNetCore.Http.Extensions;
+    @using Microsoft.AspNetCore.Http;
+
+    string name = HttpContext.Session.GetString("username");
+}
+@section style{
+<style>
+    #lgn{
+    margin-right:30%;
+    margin-left:30%;
+    margin-top:10%;
+    background-color:white;
+    border-radius:10%;
+    border: 50px solid white;
+    }
+
+    #lgnhead{
+        text-align:center;
+    }
+    #lgn div{
+    border:2px solid white;
+    
+    }
+    #items{
+    background-color:white;
+    border-radius:8%;
+    padding:3%;
+    width:auto;
+    border: 1px solid white;
+    margin-left:2%
+    }
+
+    #img{
+        width:auto;
+    }
+    #items div{
+    border:.5px solid white;
+    font-size:30px;
+    }
+
+</style>
+}
+
+<div class="text-center container-fluid">
+    @if (String.IsNullOrEmpty(name)) {
+        <div id="lgn">
+            <h1 id="lgnhead">Login</h1>
+            <form method="post">
+                <div class="row">
+                    <div class="col-4">
+                        <label class="col-form-label">Username:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" class="form-control" asp-for="lgn.username" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-4">
+                        <label class="col-form-label">Password:</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="password" class="form-control" asp-for="lgn.password" />
+                    </div>
+                </div>
+                <div class="">
+                    <input class="btn btn-success" type="submit" value="submit" asp-page-handler="Login"/>
+                </div>
+            </form>
+        </div>
+    }
+    else
+    {
+        <div >
+            <div id="items1" class="row">
+               
+
+            </div>
+
+        </div>
+    }
+
+</div>
+@if (!String.IsNullOrEmpty(name)) {
+@section Scripts{
+        
+        <script>
+
+            $.ajax({
+                url: '?handler=Items',
+                type: 'GET',
+                success: function (data) {
+                    //$('#items').html(data);
+                    console.log(data);
+                //let item = JSON.parse(data);
+                 data.map(item=>{
+                    document.getElementById("items1").innerHTML += "<div id='items' class='col-2'><h3> " + item.iname + "</h3>\n<img id='img' src='/img/" + item.image + "'  width='100' height='200'/>\n<div class='border' >" + item.description + "</div>\n<div class='row'><div id='qty' class='col-6 border'>Qty:" + item.quantity + "</div><div id='prc' class='col-6 border'>₱" + item.price + "</div></div> <button class='btn btn-dark'>Add\n<i class='fas fa-angle-down'></i></button></div>"
+                 }).join('');
+             },
+                error: function (xhr) {
+                    alert('Error loading records.');
+                }
+            });
+    </script>
+}
+}
