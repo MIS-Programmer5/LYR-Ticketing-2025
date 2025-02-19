@@ -29,7 +29,7 @@ return [
     */
 
     'disks' => [
-        'volume' => [
+        'volume1' => [
             'driver' => 'local',
             'root' => env('STORAGE_PATH_V1', storage_path('app')),
             'url' => env('APP_URL') . '/storage',
