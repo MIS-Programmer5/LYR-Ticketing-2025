@@ -29,6 +29,12 @@ return [
     */
 
     'disks' => [
+        'volume' => [
+            'driver' => 'local',
+            'root' => env('FILESYSTEM_DISK'),
+            'url' => env('APP_URL') . '/storage',
+            'visibility' => 'public',
+        ],
 
         'local' => [
             'driver' => 'local',
