@@ -29,7 +29,7 @@ return [
     */
 
     'disks' => [
-        'volume1' => [
+        'volume' => [
             'driver' => 'local',
             'root' =>env('UPLOADS_PATH', 'D:/uploads'),
             'url' => env('APP_URL') . '/uploads/uploads',
