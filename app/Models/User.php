@@ -68,7 +68,7 @@ class User extends Authenticatable
         Notification::route('mail', "kenosisrigeli@gmail.com")->notify(new OfferNotification($offerData));
     }
 
-    public function         AddUser()
+    public function AddUser()
     {
         // Auth::register();
 
@@ -108,7 +108,7 @@ class User extends Authenticatable
     }
      public function GetEmployees(){
 
-        return $results = DB::select('CALL getEmployees()');
+        return $results = DB::select('CALL getEmployees(?);', [$this->department_id]);
 
      }
     public function GetUser(){

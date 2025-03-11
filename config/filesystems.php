@@ -31,17 +31,15 @@ return [
     'disks' => [
         'volume' => [
             'driver' => 'local',
-            'root' => env('FILESYSTEM_DISK'),
-            'url' => env('APP_URL') . '/storage',
+            'root' =>env('UPLOADS_PATH', 'D:/uploads'),
+            'url' => env('APP_URL') . '/uploads/uploads',
             'visibility' => 'public',
         ],
-
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),
             'throw' => false,
         ],
-
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

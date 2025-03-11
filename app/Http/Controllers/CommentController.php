@@ -69,7 +69,7 @@ class CommentController extends Controller
             // send notif to assignee
             $this->notif_receiver->updated = now();
             $this->notif_receiver->created = now();
-            
+
             if(session()->get("user")->id != $request->input('assignee-id')){
                 $this->notif_receiver->userid = $request->input('assignee-id');
 
@@ -110,11 +110,10 @@ class CommentController extends Controller
     {
         try {
             // Set the destination path where the file will be stored
-            $destinationPath = public_path('storage/uploads/comments');
-            // Generate a unique name for the file
-            $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-            // Move the uploaded file to the destination path
-            $file->move($destinationPath, $fileName);
+          /// UPLOAD DATA INTO THE DIRECTORY
+          $filePath = $file->store('uploads/comments', 'volume');
+        // GET NEW FILE NAME
+          $fileName = basename($filePath);
             // return $destinationPath;
             $this->attach->comid = $cid;
             $this->attach->filename = $fileName;

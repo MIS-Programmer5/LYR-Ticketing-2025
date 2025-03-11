@@ -23,6 +23,7 @@ use App\Notifications\Ticket as Notifticket;
 use App\Notifications\OffersNotification as OffersNotification;
 use App\Events\Notifications as EventNotification;
 use Pusher\Pusher;
+use Illuminate\Support\Facades\Storage;
 
 
 class TicketController extends Controller
@@ -175,17 +176,8 @@ class TicketController extends Controller
             $this->ticket->updated = now();
 
             if ($request->hasFile('files')) {
-                $files = $request->file('files');
-                if (is_array($files)) {
-                    // Multiple files uploaded
-                    foreach ($files as $file) {
-                        // Handle each file individually
-                        $this->handleUploadedFile($file, $this->ticket->ticket_code);
-                    }
-
-                } else {
-                    // Single file uploaded
-                    $this->handleUploadedFile($files, $this->ticket->ticket_code);
+                foreach ($request->file('files') as $file) {
+                    $this->handleUploadedFile($file, $this->ticket->ticket_code);
                 }
             }
             ///
@@ -210,6 +202,7 @@ class TicketController extends Controller
             // set receiver
             $this->notif_receiver->notifid = $this->notif->AddNotifications();
             $this->email->did = session()->get('user')->Department_id;
+
             foreach ($this->email->GetEmails() as $res) {
                 if ($res->SERVICE_DESK == 1) {
                     $this->notif_receiver->userid = $res->id;
@@ -231,16 +224,14 @@ class TicketController extends Controller
     }
     public function handleUploadedFile($file, $tcode)
     {
-        // Set the destination path where the file will be stored
-        $destinationPath = public_path('storage/uploads');
-        // Generate a unique name for the file
-        $fileName = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-        // Move the uploaded file to the destination path
-        $file->move($destinationPath, $fileName);
+        /// UPLOAD DATA INTO THE DIRECTORY
+          $filePath =  $file->store('uploads', 'volume'); // STORE FILE IN THE DIRECTORY
+        // GET NEW FILE NAME
+          $fileName = basename($filePath);
         // You can store the file path or perform any other operations here
         $this->ticket->addfile($fileName, $tcode);
     }
-    
+
     public function TicketInstruction(Request $request)
     {
         try {
