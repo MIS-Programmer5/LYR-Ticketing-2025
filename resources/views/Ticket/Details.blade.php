@@ -246,7 +246,7 @@
                                                 <div class="d-flex flex-column font-size-sm font-weight-bold mt-15">
                                                     <p class="font-size-lg text-dark-50 mb-0"><em> Attachments: </em></p>
                                                     @foreach ($file->FindFile() as $res)
-                                                        <a href="{{ asset('/uploads/uploads/'  . $res->name) }}"
+                                                        <a href="{{ asset('/storage/uploads/'  . $res->name) }}"
                                                             target="_blank"
                                                             class="d-flex align-items-center text-dark-50 text-hover-primary py-1">
                                                             <span
@@ -1648,7 +1648,7 @@
             let tobereturned = data.length == 0 ? "" :
                 `<p class="font-size-lg text-dark-50 mb-0"><em> Attachments: </em></p>`;
             $(data).each((index, value) => {
-                tobereturned += ` <a href="{{ asset('uploads/uploads/comments/${value.filename}') }}" target="_blank"
+                tobereturned += ` <a href="{{ asset('storage/uploads/comments/${value.filename}') }}" target="_blank"
                                                     class="d-flex align-items-center text-dark-50 text-hover-primary py-1">
                                                     <span class="flaticon2-clip-symbol text-warning icon-1x mr-2"></span>
                                                    ${value.filename}
