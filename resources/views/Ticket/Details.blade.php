@@ -246,7 +246,7 @@
                                                 <div class="d-flex flex-column font-size-sm font-weight-bold mt-15">
                                                     <p class="font-size-lg text-dark-50 mb-0"><em> Attachments: </em></p>
                                                     @foreach ($file->FindFile() as $res)
-                                                        <a href="{{ asset('/storage/uploads/'  . $res->name) }}"
+                                                        <a href="{{ asset('/storage/uploads/'. $res->name) }}"
                                                             target="_blank"
                                                             class="d-flex align-items-center text-dark-50 text-hover-primary py-1">
                                                             <span
