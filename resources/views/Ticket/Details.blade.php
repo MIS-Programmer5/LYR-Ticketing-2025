@@ -791,7 +791,7 @@
                                     name="employee" required>
                                     <option value=""></option>
                                     @foreach ($user->GetEmployees() as $res)
-                                        <option value="{{ $res->id }}">{{ $res->name }}</option>\
+                                        <option value="{{ $res->id }}">{{ $res->name }}</option>
                                     @endforeach
                                 </select>
                                 <input class="form-control" id="employee-name" name="assignee-name" type="hidden" />
@@ -2046,7 +2046,7 @@
                             response.data,
                             'success',
                         );
-                        // location.reload();
+                        location.reload();
 
                         // myModal.hide();
                     })
@@ -2088,6 +2088,7 @@
         }
 
         function getissue(classes) {
+
             var issue = {!! json_encode($issue->GetIssue()) !!};
             var depid = {{ session()->get('user')->Department_id }};
 
