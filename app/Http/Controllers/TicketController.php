@@ -141,10 +141,11 @@ class TicketController extends Controller
       } else {
             return redirect("/inbox");
       }
-        if(session()->has("user")) {
+        if(session()->has(key: "user")) {
             $this->file->ticket_id = strval($tid);
              // $this->file->ticket_id = strval($tid);
             $this->class->depid = session()->get('user')->Department_id;
+            $this->user->department_id = session()->get('user')->Department_id;
             $this->issue->dept_id = session()->get('user')->Department_id;
             return view('Ticket/Details')->with('department', $this->department)->with('ticket', $this->ticket)->with('user', $this->user)->with('file', $this->file)->with('data', $data)->with('status', $this->status)->with('class', $this->class)->with('priority', $this->priority)->with('issue', $this->issue);
         }
