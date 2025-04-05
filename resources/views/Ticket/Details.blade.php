@@ -1039,6 +1039,18 @@
                                 </select>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-1">
+                                <label>Anydesk:</label>
+                            </div>
+                            <div class="col-5">
+                                <input class="form-control" name="anydesk"
+                                    onkeyup='handleAnydeskKeyUp("\nAnydesk \nFrom: <span style=`color:blue`>{{ $data->anydesk }}</span> \n-> To:<span style=`color:red`>"+this.value+"</span>")'
+                                    id="modal-anydesk" value="{{ $data->anydesk }}" type="text" />
+
+                            </div>
+
+                        </div>
 
                         <div class="row">
                             <div class="col-2">
@@ -2197,6 +2209,8 @@
         let nsubject = "";
         let nposition = "";
         let nbranch = "";
+        let nanydesk = "";
+
         let nto = "";
         let uissue = "";
         let uclass = "";
@@ -2204,7 +2218,7 @@
 
         function appenremarks() {
             $(`#update-remarks`).val(nname + "\n" + nemail + "\n" + ndescript + "\n" + nsubject + "\n" + nposition + "\n" +
-                nbranch + "\n" + nto + "\n");
+                nbranch + "\n" + nto + "\n"+ nanydesk + "\n");
         }
 
         function handleEmailKeyUp(value) {
@@ -2227,6 +2241,12 @@
         function handlePositionKeyUp(value) {
 
             nposition = value;
+            appenremarks();
+        }
+
+          function handleAnydeskKeyUp(value) {
+
+            nanydesk = value;
             appenremarks();
         }
 

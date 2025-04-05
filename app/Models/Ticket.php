@@ -147,7 +147,7 @@ class Ticket extends Model
     public function EditTicket()
     {
         try {
-            DB::select('CALL EditTicket(?,?,?,?,?,?,?,?,?)', [$this->tname, $this->tposition, $this->trequester, $this->treceiver, $this->ticketid, $this->tsubject, $this->tdescription, $this->temail,$this->user_id]);
+            DB::select('CALL EditTicket(?,?,?,?,?,?,?,?,?,?)', [$this->tname, $this->tposition, $this->trequester, $this->treceiver, $this->ticketid, $this->tsubject, $this->tdescription, $this->temail,$this->user_id,$this->anydesk]);
              $this->result="Status Update ";
         } catch (\Exception $e) {
             $this->result = $e->getMessage();

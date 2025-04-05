@@ -519,6 +519,7 @@ class TicketController extends Controller
         $this->ticket->tsubject=str_replace(["`"], "'",$request->input('subject'));
         $this->ticket->tdescription=str_replace(["`"], "'",$request->input('descrip'));
         $this->ticket->user_id = $request->input('uid');
+        $this->ticket->anydesk = $request->input('anydesk');
         ///userlogs
         $this->userlog->token = "";
         $this->userlog->userid =  $request->input('uid');
