@@ -39,6 +39,7 @@ class Ticket extends Model
     public $workingtime;
     public $type;
     public $keyword;
+    public $anydesk;
 
 
 
@@ -58,8 +59,10 @@ class Ticket extends Model
             $position = $this->request->input('position');
             $ticket_subject = str_replace(["`"], "'", $this->request->input('subject'));
             $ticket_description = str_replace(["`"], "'", $this->request->input('description'));
+            $anydesk = str_replace(["`"], "'", $this->request->input('anydesk'));
+
         //ticket code
-            $results = DB::select('CALL AddTicket(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$position, $email, $name, $department_id, $requester_department_id, $ticket_subject, $ticket_description, session()->get("user")->id, $this->ticket_code, $this->created, $this->updated]);
+            $results = DB::select('CALL AddTicket(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', [$position, $email, $name, $department_id, $requester_department_id, $ticket_subject, $ticket_description, session()->get("user")->id, $this->ticket_code, $this->created, $this->updated, $anydesk]);
             $this->result = "Add Ticket Succeed";
             $this->icon = "success";
             return $this->result;

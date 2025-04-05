@@ -240,7 +240,22 @@
                                     <div class="my-0">
                                         <div class="card-spacer-x pt-2">
                                             <p style="white-space: pre-wrap;font-family:inherit !important"
-                                                class="font-size-lg">{{ ucfirst($data->ticket_description) }}</p>
+                                                class="font-size-lg">{{ ucfirst($data->ticket_description) }}
+                                            </p>
+                                            @if (isset($data->anydesk))
+                                             <div class="row">
+                                                <div class="col-md-6">
+                                                    <b>Anydesk: {{$data->anydesk}}</b>
+                                                </div>
+                                                 <div class="col-md-6">
+                                                    <div class="d-flex align-items-center">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @endif
+
+
 
                                             @if (count($file->FindFile()) > 0)
                                                 <div class="d-flex flex-column font-size-sm font-weight-bold mt-15">
