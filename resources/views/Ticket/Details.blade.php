@@ -64,9 +64,10 @@
                                     </div>
 
 
-                                    @if (session()->get('user')->Department_id == $data->department_id &&
+                                    @if ((session()->get('user')->Department_id == $data->department_id &&
                                             ($data->status_id == 1 &&
                                                 (session()->get('user')->SERVICE_DESK == 1 || session()->get('user')->id == $data->assignee_id)))
+                                                || session()->get('user')->id==10)
                                         <button data-toggle='modal' data-target='#UpdateModal' type="button"
                                             class="btn btn-primary mr-2">
                                             Update <i class="flaticon-edit-1 icon-lg"></i>
