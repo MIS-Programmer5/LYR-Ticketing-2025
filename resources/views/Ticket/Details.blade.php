@@ -2263,7 +2263,7 @@
         }
 
         function handleTextareaKeyUp(textarea) {
-            var description = `{{ $data->ticket_description }}`;
+            var description = `{{ json_encode($data->ticket_description) }}`;
 
 
             ndescript = "Description \n= From:<span style='color:blue'>" + description +
