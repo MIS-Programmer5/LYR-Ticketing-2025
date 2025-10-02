@@ -38,7 +38,7 @@
            </div>
           <div class="card-body">
             <div class="row justify-content-center">
-              <div class="col-10">
+              <div class="col-10"  style="width: auto">
                 <table class="table table-bordered table-lg table-head-custom table-checkable table-hover dataTable dtr-inline"  id="table_department">
             </table>
               </div>
@@ -135,14 +135,14 @@
                     },
                     { data: null, title: "<b> Business Unit </b>",
                       render: function (data, type, row) {
-                        return data.bu_name;
+                        return  `<div class='paragraph-container text-wrap'>${data.bu_name}</div>`;
                       }
                     },
                     { data: null, title: "<b> Action </b>",
                       render: function (data, type, row) {
                         return `
-                        <a href="#" onclick='getDepartment(${JSON.stringify(row)})' class="btn btn-icon btn-light-info btn-sm mr-2 border border-0" data-toggle="tooltip" data-theme="dark" title="Assigned"><i class="fas fa-edit"></i></a>
-                        <a href="#" onclick='DeleteDepartment(${JSON.stringify(row)})' class="btn btn-icon btn-light-danger btn-sm mr-2 border border-0" data-toggle="tooltip" data-theme="dark" title="Assigned"><i class="far fa-trash-alt"></i></a>`;
+                        <a href="#" onclick='getDepartment(${JSON.stringify(row)})' class="btn btn-icon btn-light-info btn-sm mr-2 border border-0" data-toggle="tooltip" data-theme="dark" title="Assigned"><i class="fas fa-edit"></i></a>`;
+                        // <a href="#" onclick='DeleteDepartment(${JSON.stringify(row)})' class="btn btn-icon btn-light-danger btn-sm mr-2 border border-0" data-toggle="tooltip" data-theme="dark" title="Assigned"><i class="far fa-trash-alt"></i></a>`;
 
                       }
                     }
