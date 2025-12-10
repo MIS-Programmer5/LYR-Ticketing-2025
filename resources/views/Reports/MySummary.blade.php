@@ -7,9 +7,7 @@
       <div class="d-flex align-items-baseline flex-wrap mr-5">
         <h6 class="text-dark font-weight-bold my-1 mr-5"> Ticketing </h6>
         <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
-          <li class="breadcrumb-item text-primary">
-            <a href="/user" class="text-primary"> User Accounts </a>
-          </li>
+
         </ul>
       </div>
     </div>

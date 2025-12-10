@@ -38,7 +38,7 @@
                       <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label"> Requester Name <i class="fas fa-asterisk text-danger icon-xs" data-toggle="tooltip" title="Require Field"></i></label>
                         <div class="col-lg-9 col-xl-9">
-                          <input value="{{session()->get('user')->name}}" type="text" name="name" class="form-control form-control-lg" id="name" required />
+                          <input  type="text" name="name" class="form-control form-control-lg" id="name" required />
                         </div>
                       </div>
                       <div class="form-group row">
@@ -53,19 +53,20 @@
                           <input value="{{session()->get('user')->email}}" type="email" name="company_email" class="form-control form-control-lg" id="company_email" required />
                         </div>
                       </div>
+
                       <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label"> Branch/Department <i class="fas fa-asterisk text-danger icon-xs" data-toggle="tooltip" title="Require Field"></i></label>
                         <div class="col-lg-9 col-xl-9">
                           <select value="{{session()->get('user')->Department_id}}" name="branch_department" class="form-control form-control-lg" id="branch_department" style="width: 100%" required>
                             <option value="" disabled selected> --Select Branch or Department-- </option>
                             @foreach($department->getDepartment() as $res)
-                            @if($res->requester==1)
-                            @if(session()->get('user')->Department_id==$res->id)
-                            <option selected value="{{ $res->id }}"> {{ $res->department_name }} </option>
-                            @else
-                            <option value="{{ $res->id }}"> {{ $res->department_name }} </option>
-                            @endif
-                            @endif
+                                @if($res->requester==1)
+                                    @if(session()->get('user')->Department_id==$res->id)
+                                        <option selected value="{{ $res->id }}"> {{ $res->department_name }} </option>
+                                    @else
+                                        <option value="{{ $res->id }}"> {{ $res->department_name }} </option>
+                                    @endif
+                                @endif
                             @endforeach
                           </select>
                           <input type="hidden" name="from_branch_department_name" class="form-control form-control-lg" id="from_branch_department_name" value="{{session()->get('user')->department_name}}" />
@@ -77,9 +78,9 @@
                           <select name="addressto" class="form-control form-control-lg" id="addressto" style="width: 100%" required>
                             <option value="" selected> --Select Branch or Department-- </option>
                             @foreach($department->getDepartment() as $res)
-                            @if($res->receiver==1)
-                            <option value="{{ $res->id }}"> {{ $res->department_name }} </option>
-                            @endif
+                                @if($res->receiver==1)
+                                    <option value="{{ $res->id }}"> {{ $res->department_name }} </option>
+                                @endif
                             @endforeach
                           </select>
                           <input type="hidden" name="branch_department_name" class="form-control form-control-lg" id="branch_department_name" />
@@ -95,6 +96,12 @@
                         <label class="col-xl-3 col-lg-3 col-form-label"> Request Description <i class="fas fa-asterisk text-danger icon-xs" data-toggle="tooltip" title="Require Field"></i></label>
                         <div class="col-lg-9 col-xl-9">
                           <textarea name="description" class="form-control" id="description" rows="5" required></textarea>
+                        </div>
+                      </div>
+                       <div class="form-group row">
+                        <label class="col-xl-3 col-lg-3 col-form-label"> Anydesk </label>
+                        <div class="col-lg-9 col-xl-9">
+                          <input  type="text" pattern="[a-zA-Z0-9 ]*" name="anydesk" class="form-control form-control-lg" id="anydesk"  placeholder="Not allowed ex: !@#$%^&*()_ etc..." />
                         </div>
                       </div>
                       <div class="form-group row">

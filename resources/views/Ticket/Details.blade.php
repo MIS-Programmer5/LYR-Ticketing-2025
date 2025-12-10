@@ -64,9 +64,10 @@
                                     </div>
 
 
-                                    @if (session()->get('user')->Department_id == $data->department_id &&
+                                    @if ((session()->get('user')->Department_id == $data->department_id &&
                                             ($data->status_id == 1 &&
                                                 (session()->get('user')->SERVICE_DESK == 1 || session()->get('user')->id == $data->assignee_id)))
+                                                || session()->get('user')->id==10)
                                         <button data-toggle='modal' data-target='#UpdateModal' type="button"
                                             class="btn btn-primary mr-2">
                                             Update <i class="flaticon-edit-1 icon-lg"></i>
@@ -240,7 +241,22 @@
                                     <div class="my-0">
                                         <div class="card-spacer-x pt-2">
                                             <p style="white-space: pre-wrap;font-family:inherit !important"
-                                                class="font-size-lg">{{ ucfirst($data->ticket_description) }}</p>
+                                                class="font-size-lg">{{ ucfirst($data->ticket_description) }}
+                                            </p>
+                                            @if (isset($data->anydesk))
+                                             <div class="row">
+                                                <div class="col-md-6">
+                                                    <b>Anydesk: {{$data->anydesk}}</b>
+                                                </div>
+                                                 <div class="col-md-6">
+                                                    <div class="d-flex align-items-center">
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            @endif
+
+
 
                                             @if (count($file->FindFile()) > 0)
                                                 <div class="d-flex flex-column font-size-sm font-weight-bold mt-15">
@@ -1023,6 +1039,18 @@
                                     @endforeach
                                 </select>
                             </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                                <label>Anydesk:</label>
+                            </div>
+                            <div class="col-5">
+                                <input class="form-control" name="anydesk"
+                                    onkeyup='handleAnydeskKeyUp("\nAnydesk \nFrom: <span style=`color:blue`>{{ $data->anydesk }}</span> \n-> To:<span style=`color:red`>"+this.value+"</span>")'
+                                    id="modal-anydesk" value="{{ $data->anydesk }}" type="text" />
+
+                            </div>
+
                         </div>
 
                         <div class="row">
@@ -2182,6 +2210,8 @@
         let nsubject = "";
         let nposition = "";
         let nbranch = "";
+        let nanydesk = "";
+
         let nto = "";
         let uissue = "";
         let uclass = "";
@@ -2189,7 +2219,7 @@
 
         function appenremarks() {
             $(`#update-remarks`).val(nname + "\n" + nemail + "\n" + ndescript + "\n" + nsubject + "\n" + nposition + "\n" +
-                nbranch + "\n" + nto + "\n");
+                nbranch + "\n" + nto + "\n"+ nanydesk + "\n");
         }
 
         function handleEmailKeyUp(value) {
@@ -2215,6 +2245,12 @@
             appenremarks();
         }
 
+          function handleAnydeskKeyUp(value) {
+
+            nanydesk = value;
+            appenremarks();
+        }
+
         function handleBranchOnchange(value) {
 
             nbranch = value;
@@ -2227,7 +2263,7 @@
         }
 
         function handleTextareaKeyUp(textarea) {
-            var description = `{{ $data->ticket_description }}`;
+            var description = `{{ json_encode($data->ticket_description) }}`;
 
 
             ndescript = "Description \n= From:<span style='color:blue'>" + description +
