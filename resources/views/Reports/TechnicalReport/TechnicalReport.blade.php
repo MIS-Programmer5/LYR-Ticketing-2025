@@ -138,14 +138,14 @@
       <td class="s1" style="width:100pt;text-align: center;white-space: pre-wrap;" rowspan="2" bgcolor="#4185F4">Technician: </td>
       <td height="20px" class="s1" style="width:156pt;color:black;text-align:center;" colspan="2" >{!! $assignee !!}</td>
       <td class="s1" style="width:100pt;text-align: center;white-space: pre-wrap;" rowspan="2" bgcolor="#4185F4">Reviewed By:</td>
-      <td height="20px" class="s1" style="width:156pt;color:black;font-size:8px;text-align:center" colspan="2"> </td>
+      <td height="20px" class="s1" style="width:156pt;color:black;font-size:10px;text-align:center" colspan="2">Jomar I. Maro</td>
     </tr>
 
     <tr style="height:13pt">
 
       <td height="20px" class="s1" style="width:156pt;color:black;font-size:8px;text-align:center" colspan="2" >TECH & FACILITY SUPPORT STAFF</td>
 
-      <td height="20px" class="s1" style="width:156pt;color:black;font-size:8px;text-align:center" colspan="2" ></td>
+      <td height="20px" class="s1" style="width:156pt;color:black;font-size:8px;text-align:center" colspan="2" >CHIEF INFORMATION SECURITY OFFICER</td>
     </tr>
      <tr style="height:13pt; border:solid 1pt white !important">
       <th  height="10px" class="s1" style="width:512pt;" colspan="8" ></th>
