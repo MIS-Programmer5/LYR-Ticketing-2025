@@ -101,7 +101,7 @@
                        <div class="form-group row">
                         <label class="col-xl-3 col-lg-3 col-form-label"> Anydesk </label>
                         <div class="col-lg-9 col-xl-9">
-                          <input  type="text" pattern="[a-zA-Z0-9 ]*" name="anydesk" class="form-control form-control-lg" id="anydesk"  placeholder="Not allowed ex: !@#$%^&*()_ etc..." />
+                          <input  type="number" pattern="[a-zA-Z0-9 ]*" name="anydesk" class="form-control form-control-lg" id="anydesk"  placeholder="Please Input Anydesk or Ultraviewer No....Not allowed ex: !@#$%^&*()_ etc..." />
                         </div>
                       </div>
                       <div class="form-group row">
