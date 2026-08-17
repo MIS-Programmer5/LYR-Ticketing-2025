@@ -219,18 +219,24 @@ class TicketController extends Controller
 
             return $this->ticket->AddTicket() . "\n " . $this->email->result . "\n " . $this->notif_receiver->results;
         }catch (\Exception $e){
-            return "controller error".$e->getMessage()."  ".$e->getLine();
+
+            return "controller error ".$e->getMessage()."  ".$e->getLine();
         }
 
     }
     public function handleUploadedFile($file, $tcode)
     {
-        /// UPLOAD DATA INTO THE DIRECTORY
-          $filePath =  $file->store('uploads', 'volume'); // STORE FILE IN THE DIRECTORY
+        try {
+             $filePath =  $file->store('uploads', 'volume'); // STORE FILE IN THE DIRECTORY
         // GET NEW FILE NAME
-          $fileName = basename($filePath);
-        // You can store the file path or perform any other operations here
-        $this->ticket->addfile($fileName, $tcode);
+            $fileName = basename($filePath);
+            // You can store the file path or perform any other operations here
+            $this->ticket->addfile($fileName, $tcode);
+        } catch (\Throwable $th) {
+           throw new \Exception("File upload failed for '{$file->getClientOriginalName()}': " . $th->getMessage());
+        }
+        /// UPLOAD DATA INTO THE DIRECTORY
+        
     }
 
     public function TicketInstruction(Request $request)
