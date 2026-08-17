@@ -231,7 +231,8 @@
 
 
         axios.post('/add-ticket', formData).then(function(response) {
-          Swal.fire(response,'','success');
+          console.log(response);
+          Swal.fire('Created Successfully','','success');
           form.reset();
            $("#add-btn").prop("disabled", false);
         })
